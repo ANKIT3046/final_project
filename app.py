@@ -39,15 +39,15 @@ def login():
 @app.route('/login1')
 def login1():
     return render_template('/login1.html')
-@app.route('/index')
-def index():
-    return render_template('index.html')
+#@app.route('/index')
+#def index():
+#    return render_template('index.html')
 
 def gen(camera):
     while True:
         frame = camera.get_frame()
         yield (b'--frame\r\n'
-               b'Content-Type: image/jpg\r\n\r\n' + frame + b'\r\n\r\n')
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 @app.route('/video_feed')
 def video_feed():
