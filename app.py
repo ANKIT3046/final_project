@@ -1,7 +1,7 @@
 from flask import Flask, render_template, Response,redirect, url_for, request
 from camera import VideoCamera
 import sqlite3
-import hashlib
+#import hashlib
 app = Flask(__name__)
 
 #def check_password(hashed_password,user_password):
@@ -42,6 +42,17 @@ def login1():
 #@app.route('/index')
 #def index():
 #    return render_template('index.html')
+
+#---------chnage--------------------------
+@app.route('/list')
+def list():
+    con=sqlite3.connect('hellodata.db')
+    con.row_factory=sqlite3.Row
+    cur=con.cursor()
+    cur.execute('select * from hello')
+    rows=cur.fetchall();
+    return render_template('data.html',rows=rows)
+#----------change--------------------------
 
 def gen(camera):
     while True:
